@@ -40,3 +40,26 @@
 .read-the-docs {
   color: #888;
 }
+
+/* App.css */
+.app-container {
+  text-align: center;
+}
+
+.message {
+  padding: 10px;
+  margin-bottom: 8px;
+  background-color: #e0f7fa;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.send-button {
+  margin-top: 10px;
+}
+
+.messages-container {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 20px;
+}
