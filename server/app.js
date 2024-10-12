@@ -1,10 +1,11 @@
 import express from "express";
+import { createServer } from "http"; 
 import { Server } from "socket.io";
 
 const app = express();
-const server = new Server(app);
+const httpServer = createServer(app);
 
-const io = new Server(server, {});
+const io = new Server(httpServer, {}); 
 
 app.get("/", (req, res) => {
   res.send("Hello World");
@@ -18,6 +19,6 @@ io.on("connection", (socket) => {
   });
 });
 
-app.listen(3000, () => {
+httpServer.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
 });
