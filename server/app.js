@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
 
   // Broadcast the total number of connected users to all clients
   io.emit("user-count", connectedUsers);
- 
+
   // Handle receiving a message from a client
   socket.on("message", (msg) => {
     console.log("Received message:", msg);
@@ -48,12 +48,7 @@ io.on("connection", (socket) => {
     console.log(`User disconnected. Total users: ${connectedUsers}`);
     io.emit("user-count", connectedUsers);
   });
-
-  
-
 });
-
-
 
 httpServer.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");

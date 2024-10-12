@@ -8,7 +8,7 @@ import {
   Box,
   Paper,
 } from "@mui/material";
-import "./App.css"; // Import the CSS file for additional styling
+import "./App.css";
 
 function App() {
   const [message, setMessage] = useState("");

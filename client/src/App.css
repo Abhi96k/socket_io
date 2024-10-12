@@ -1,3 +1,4 @@
+/* General Styles */
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -5,15 +6,113 @@
   text-align: center;
 }
 
+.app-container {
+  text-align: center;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.user-count {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Message Styles */
+.message {
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  text-align: left;
+  transition: background-color 0.3s ease;
+}
+
+/* Sent and Received Message Styles */
+.message-sent {
+  background-color: #d1e7dd; /* Light green for sent messages */
+  text-align: right;
+}
+
+.message-received {
+  background-color: #e0f7fa; /* Light blue for received messages */
+}
+
+/* Send Button Styles */
+.send-button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff; /* Primary button color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.send-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Messages Container Styles */
+.messages-container {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 20px;
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Padding inside the container */
+  background-color: #f9f9f9; /* Light background */
+}
+
+/* Scrollbar Styles */
+.messages-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background-color: #bdbdbd; /* Thumb color */
+  border-radius: 10px; /* Rounded corners for scrollbar */
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background-color: #a6a6a6; /* Darker on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem;
+  }
+
+  .message {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .send-button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Logo Styles (if you have one) */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -49,17 +148,37 @@
 .message {
   padding: 10px;
   margin-bottom: 8px;
-  background-color: #e0f7fa;
   border-radius: 8px;
-  text-align: left;
+  background-color: #e0f7fa; /* Light blue for messages */
+  transition: background-color 0.3s ease;
 }
 
+/* Styles for send button */
 .send-button {
   margin-top: 10px;
+  padding: 10px 15px;
 }
 
+/* Messages Container */
 .messages-container {
   max-height: 300px;
   overflow-y: auto;
   margin-top: 20px;
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background */
+}
+
+/* Scrollbar Styles */
+.messages-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background-color: #bdbdbd; /* Thumb color */
+  border-radius: 10px; /* Rounded corners for scrollbar */
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background-color: #a6a6a6; /* Darker on hover */
 }
