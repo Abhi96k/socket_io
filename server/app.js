@@ -40,15 +40,14 @@ io.on("connection", (socket) => {
   // Handle receiving a message from a client
   socket.on("message", (msg) => {
     console.log("Received message:", msg);
-    io.emit("message", msg); // Broadcast the message to all connected clients
+    socket.broadcast.emit("message", msg); // Broadcast the message to all clients except the sender
   });
 
-
   socket.on("disconnect", () => {
-    connectedUsers--; 
+    connectedUsers--; // Decrement user count when a connection is closed
     console.log(`User disconnected. Total users: ${connectedUsers}`);
 
-
+    // Broadcast the updated user count to all clients
     io.emit("user-count", connectedUsers);
   });
 });
