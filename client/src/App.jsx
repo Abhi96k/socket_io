@@ -1,66 +1,65 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import "./App.css"; // Import the CSS file
 
 function App() {
   const [message, setMessage] = useState("");
   const [receivedMessages, setReceivedMessages] = useState([]);
   const [userCount, setUserCount] = useState(0);
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
- 
-    const socket = io("http://localhost:3000");
+    const newSocket = io("http://localhost:3000");
+    setSocket(newSocket);
 
-    // On successful connection
-    socket.on("connect", () => {
-      console.log("Connected to server", socket.id);
+    newSocket.on("connect", () => {
+      console.log("Connected to server", newSocket.id);
     });
 
-    // Listen for incoming messages
-    socket.on("message", (msg) => {
+    newSocket.on("message", (msg) => {
       console.log("Message from server:", msg);
       setReceivedMessages((prevMessages) => [...prevMessages, msg]);
     });
 
-    // Listen for the user count update
-    socket.on("user-count", (count) => {
+    newSocket.on("user-count", (count) => {
       console.log("User count updated:", count);
       setUserCount(count);
     });
 
-    // Cleanup the socket connection on component unmount
     return () => {
-      socket.disconnect();
+      newSocket.disconnect();
     };
   }, []);
 
-  // Send message to server
   const sendMessage = () => {
-    const socket = io("http://localhost:3000");
-    socket.emit("message", message); // Send message to backend
-    setMessage(""); // Clear input
+    if (socket) {
+      socket.emit("message", message);
+      setMessage("");
+    }
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Socket.IO Chat</h1>
-
-      {/* Display the number of connected users */}
-      <p>Connected Users: {userCount}</p>
-
-      {/* Input field to send a message */}
-      <input
-        type="text"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Type a message..."
-      />
-      <button onClick={sendMessage}>Send</button>
-
-      {/* Display received messages */}
-      <div style={{ marginTop: "20px" }}>
+    <div className="app-container">
+      <h1 className="title">Socket.IO Chat</h1>
+      <p className="user-count">Connected Users: {userCount}</p>
+      <div className="input-container">
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Type a message..."
+          className="message-input"
+        />
+        <button onClick={sendMessage} className="send-button">
+          Send
+        </button>
+      </div>
+      <div className="messages-container">
         <h2>Messages</h2>
         {receivedMessages.map((msg, index) => (
-          <p key={index}>{msg}</p>
+          <p key={index} className="message">
+            {msg}
+          </p>
         ))}
       </div>
     </div>
